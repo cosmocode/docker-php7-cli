@@ -9,6 +9,7 @@ RUN docker-php-source extract \
         libldap2-dev \
         curl \
         wget \
+        unzip \
         gnupg \
         apt-transport-https \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
