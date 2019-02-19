@@ -1,4 +1,4 @@
-FROM php:7.2-cli-stretch
+FROM php:7-cli-stretch
 RUN docker-php-source extract \
     && apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -6,6 +6,7 @@ RUN docker-php-source extract \
         libpng-dev \
         libbz2-dev \
         libzip-dev \
+        libldap2-dev \
         curl \
         wget \
         gnupg \
@@ -15,6 +16,7 @@ RUN docker-php-source extract \
     && docker-php-ext-install -j$(nproc) bz2 \
     && docker-php-ext-install -j$(nproc) zip \
     && docker-php-ext-install -j$(nproc) pdo_mysql \
+    && docker-php-ext-install -j$(nproc) ldap \
     && docker-php-source delete \
     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" >> /etc/apt/sources.list.d/yarn.list \
